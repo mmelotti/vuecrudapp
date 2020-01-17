@@ -1,18 +1,26 @@
+import path from "path";
+import config from "@config";
 import Express from "express";
+import Webpack from "webpack";
+import v1Router from "@routes";
 import Mongoose from "mongoose";
-import dotenv from "dotenv";
-import config from "./config";
-import v1Router from "./routes";
-import authRouter from "./routes/v1/auth";
+import WebpackConfig from "@/webpack.config";
+import WebpackDevMiddleware from "webpack-dev-middleware";
 
-dotenv.config();
+Mongoose.connect(config.databaseUrl, { useNewUrlParser: true });
 
-Mongoose.connect(config.dabaseUrl, {
-  useNewUrlParser: true
-});
 const app = Express();
-app.use("api/v1/auth", authRouter);
+
+const compiler = Webpack(WebpackConfig);
+
+app.use(WebpackDevMiddleware(compiler));
+
+app.use(v1Router);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "public/index.html"));
+});
 
 app.listen(3000, () => {
-  console.log("server started OK");
+  console.log("server started succesfully.");
 });
