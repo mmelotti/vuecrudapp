@@ -8,6 +8,8 @@ import WebpackConfig from "@/webpack.config";
 import WebpackHotMiddleware from "webpack-hot-middleware";
 import WebpackDevMiddleware from "webpack-dev-middleware";
 
+console.log("teste");
+console.log(config.databaseUrl + "as");
 Mongoose.connect(config.databaseUrl, { useNewUrlParser: true });
 
 const app = Express();
