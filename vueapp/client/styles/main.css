@@ -5,3 +5,8 @@ h1 {
 @tailwind preflight;
 @tailwind components;
 @tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css?family=Merriweather:300,400,700");
+body {
+  background-color: #fefbfa !important;
+}
