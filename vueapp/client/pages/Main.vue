@@ -1,6 +1,7 @@
 <template>
-  <h1 class="text-center text-teal">Welcome - Vue App</h1>
   <div>
+    <h1 class="text-center text-teal">Welcome - Vue App</h1>
+
     <router-link to="/auth/login">Login</router-link>
     <router-link to="/auth/register">Register</router-link>
     <div class="h-2 w-full bg-gold-light"></div>

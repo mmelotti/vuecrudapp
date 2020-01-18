@@ -2,6 +2,7 @@ import path from "path";
 import config from "@config";
 import Express from "express";
 import Webpack from "webpack";
+import BodyParser from "body-parser";
 import v1Router from "@routes";
 import Mongoose from "mongoose";
 import WebpackConfig from "@/webpack.config";
@@ -14,6 +15,7 @@ Mongoose.connect(config.databaseUrl, { useNewUrlParser: true });
 
 const app = Express();
 
+app.use(BodyParser.json());
 const compiler = Webpack(WebpackConfig);
 
 app.use(
