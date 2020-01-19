@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 import User from "@models/User";
-
+console.log("teste REGISTER INIT");
 const RegisterSchema = Yup.object().shape({
   name: Yup.string().required(),
   email: Yup.string()
@@ -13,7 +13,7 @@ const RegisterSchema = Yup.object().shape({
 
 export default async (req, res, next) => {
   const { name, email, password } = req.body;
-
+  console.log("fixed register");
   try {
     await RegisterSchema.validate({ name, email, password });
 
@@ -26,6 +26,8 @@ export default async (req, res, next) => {
         "email"
       );
     }
+
+    return next();
   } catch (error) {
     return res.status(422).json({
       [error.path]: error.message

@@ -1,7 +1,7 @@
 import User from "@models/User";
 
 const login = async (req, res) => {
-  console.log("email aqui");
+  console.log("email aqui11");
   const { email, password } = req.body;
   console.log(email);
   console.log(password);
@@ -24,6 +24,7 @@ const login = async (req, res) => {
 };
 
 const register = async (req, res) => {
+  console.log("register!!! NEW");
   const { name, email, password } = req.body;
 
   const user = await User.create({
