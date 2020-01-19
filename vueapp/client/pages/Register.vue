@@ -29,21 +29,22 @@
           :error="errors.first('password')"
           placeholder="Enter your password"
         />
-        <button
+        <btn
+          label="Sign Up"
+          :disabled="loading"
+          :loading="loading"
           @click="register"
-          class="w-full mt-3 text-sm py-5 bg-emerald text-white rounded-sm focus:outline-none hover:bg-emerald-light"
-        >
-          Sign Up
-        </button>
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { POST_REGISTER } from "@store/auth/actions";
+import { POST_REGISTER, SET_AUTH } from "@store/auth/actions";
 export default {
   data: () => ({
+    loading: false,
     model: {
       name: "",
       email: "",
@@ -56,8 +57,31 @@ export default {
         if (!isValid) {
           return;
         }
-        this.$store.dispatch(POST_REGISTER, this.model);
+        this.toggleLoading();
+        this.$store
+          .dispatch(POST_REGISTER, this.model)
+          .then(response => {
+            this.toggleLoading();
+            localStorage.setItem("auth", JSON.stringify(response.data));
+            this.$store.commit(SET_AUTH, response.data);
+            this.$router.push("/");
+          })
+          .catch(error => {
+            this.toggleLoading();
+            // error.response.data => { email: 'This user already exists' }
+            // => ['email']
+            // this.errors.add({ field: 'email', msg: 'This user already exists' })
+            Object.keys(error.response.data).forEach(field => {
+              this.errors.add({
+                field,
+                msg: error.response.data[field]
+              });
+            });
+          });
       });
+    },
+    toggleLoading() {
+      this.loading = !this.loading;
     }
   }
 };
