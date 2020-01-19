@@ -2,6 +2,8 @@ import Vue from "vue";
 import "./styles/main.css";
 import store from "./store";
 import router from "./routes";
+
+import Validator from "vee-validate";
 import Router from "vue-router";
 import Main from "./pages/Main.vue";
 import Button from "@components/Button.vue";

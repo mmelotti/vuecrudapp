@@ -1,8 +1,10 @@
 import User from "@models/User";
 
 const login = async (req, res) => {
+  console.log("email aqui");
   const { email, password } = req.body;
-
+  console.log(email);
+  console.log(password);
   const user = await User.findOne({ email });
 
   if (user) {
