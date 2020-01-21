@@ -13,7 +13,6 @@ const RegisterSchema = Yup.object().shape({
 
 export default async (req, res, next) => {
   const { name, email, password } = req.body;
-  console.log("fixed register");
   try {
     await RegisterSchema.validate({ name, email, password });
 
