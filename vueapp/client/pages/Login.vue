@@ -44,6 +44,7 @@ export default {
   }),
   methods: {
     login() {
+      console.log("login testess");
       this.$validator.validate().then(isValid => {
         if (!isValid) {
           return;
