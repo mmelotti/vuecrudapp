@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>New Worker</h1>
-    <h2 class="text-center text-gold">Register</h2>
-    <form @submit.prevent="addWorker">
+    <h2 class="text-gold text-center">New Worker</h2>
+
+    <div class="w-full bg-grey shadow-md mt-5 rounded-sm p-12">
       <div class="row">
         <label>Name:</label>
         <br />
@@ -26,10 +26,9 @@
         </div>
       </div>
       <br />
-      <div class="form-group">
-        <button class="btn btn-primary">Create</button>
-      </div>
-    </form>
+
+      <btn label="Create" @click="addWorker" />
+    </div>
   </div>
 </template>
 
@@ -46,15 +45,9 @@ export default {
       this.$store
         .dispatch(POST_ADD_WORKERS, this.worker)
         .then(response => {
-          console.log("response ok ");
-          console.log("response ok " + JSON.stringify(response.data));
+          this.$router.push("/worker/list");
         })
         .catch(error => {
-          console.log("response nnnnn!!ok ");
-
-          // error.response.data => { email: 'This user already exists' }
-          // => ['email']
-          // this.errors.add({ field: 'email', msg: 'This user already exists' })
           Object.keys(error.response.data).forEach(field => {
             this.errors.add({
               field,

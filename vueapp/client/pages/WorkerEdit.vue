@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>New Worker</h1>
-    <h2 class="text-center text-gold">Register</h2>
-    <form @submit.prevent="editWorker">
+    <h2 class="text-gold text-center">Edit Worker</h2>
+
+    <div class="w-full bg-grey shadow-md mt-5 rounded-sm p-12">
       <div class="row">
         <label>Name:</label>
         <br />
@@ -26,10 +26,9 @@
         </div>
       </div>
       <br />
-      <div class="form-group">
-        <button class="btn btn-primary">Save</button>
-      </div>
-    </form>
+
+      <btn label="Save" @click="editWorker" />
+    </div>
   </div>
 </template>
 
@@ -42,21 +41,12 @@ export default {
     };
   },
   created() {
-    console.log("create edit");
-    console.log(this.$route.params.id);
     this.$store
       .dispatch(GET_ONE_WORKER, this.$route.params.id)
       .then(response => {
-        console.log("response ok editt ");
-        console.log("response ok " + JSON.stringify(response.data));
         this.worker = response.data;
       })
       .catch(error => {
-        console.log("response nnnnnecit ");
-
-        // error.response.data => { email: 'This user already exists' }
-        // => ['email']
-        // this.errors.add({ field: 'email', msg: 'This user already exists' })
         Object.keys(error.response.data).forEach(field => {
           this.errors.add({
             field,
@@ -67,25 +57,18 @@ export default {
   },
   methods: {
     editWorker() {
-      console.log("response okedittttt " + JSON.stringify(this.worker));
       let myData = {
         _id: this.worker._id,
         name: this.worker.name,
         role: this.worker.role
       };
-      console.log(myData);
+
       this.$store
         .dispatch(POST_EDIT_WORKERS, this.worker)
         .then(response => {
-          console.log("response ok ");
-          console.log("response ok " + JSON.stringify(response.data));
+          this.$router.push("/worker/list");
         })
         .catch(error => {
-          console.log("response nnnnn!!ok ");
-
-          // error.response.data => { email: 'This user already exists' }
-          // => ['email']
-          // this.errors.add({ field: 'email', msg: 'This user already exists' })
           Object.keys(error.response.data).forEach(field => {
             this.errors.add({
               field,
