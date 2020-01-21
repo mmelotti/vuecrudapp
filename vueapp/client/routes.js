@@ -5,6 +5,7 @@ import Login from "@pages/Login.vue";
 import Register from "@pages/Register.vue";
 import WorkerList from "@pages/WorkerList.vue";
 import WorkerCreate from "@pages/WorkerCreate.vue";
+import WorkerEdit from "@pages/WorkerEdit.vue";
 
 const check = () => {
   console.log("hihi22");
@@ -17,6 +18,7 @@ export default new Router({
   mode: "history",
   routes: [
     {
+      name: "/auth/login",
       path: "/auth/login",
       component: Login
     },
@@ -33,6 +35,12 @@ export default new Router({
       path: "/worker/create",
       beforeEnter: !check(),
       component: WorkerCreate
+    },
+    {
+      name: "/worker/edit",
+      path: "/worker/edit",
+      beforeEnter: !check(),
+      component: WorkerEdit
     },
     {
       path: "/",
