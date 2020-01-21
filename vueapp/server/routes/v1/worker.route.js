@@ -19,7 +19,6 @@ workerRoutes.route("/add").post(function(req, res) {
 
 // Defined get data(index or listing) route
 workerRoutes.route("/list").get(function(req, res) {
-  console.log("list on the server");
   Worker.find(function(err, workers) {
     if (err) {
       res.json(err);
@@ -61,9 +60,6 @@ workerRoutes.route("/update/:id").post(function(req, res) {
 
 // Defined delete | remove | destroy route
 workerRoutes.route("/delete/:id").delete(function(req, res) {
-  console.log("deleteinngggg" + req.params.id);
-  console.log("deleteinngggg" + JSON.stringify(req.params));
-  console.log("deleteinngggg");
   Worker.findByIdAndRemove({ _id: req.params.id }, function(err) {
     if (err) res.json(err);
     else res.json("Successfully removed");

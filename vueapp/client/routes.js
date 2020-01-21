@@ -8,9 +8,8 @@ import WorkerCreate from "@pages/WorkerCreate.vue";
 import WorkerEdit from "@pages/WorkerEdit.vue";
 
 const check = () => {
-  console.log("hihi22");
   const token = localStorage.getItem("auth");
-  console.log(!!token);
+
   return !!token; //get token from localStorage
 };
 
