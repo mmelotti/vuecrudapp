@@ -12,7 +12,7 @@ To use the app (sign up), you have to join mailtrap.io , or just let me know if 
 
 - Main Stack:
 
-Vue, Express, Node, Mongo with Docker-compose setup
+Vue, Express, Node, Mongo with Docker-compose setup;
 
 - To Run (after clone):
 
