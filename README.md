@@ -16,7 +16,7 @@ Vue, Express, Node, Mongo with Docker-compose setup;
 
 - To Run (after clone):
 
-Install Dependencies
+Install Dependencies:
 
 > npm install
 
@@ -26,10 +26,10 @@ Run the stack
 
 - To Run (with Docker):
 
-Build Docker Images
+Build Docker Images:
 
 > docker-compose build
 
-Run the stack
+Run the stack:
 
 > docker-compose up
