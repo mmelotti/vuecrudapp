@@ -1,4 +1,5 @@
 # vuecrudapp
+A simple application using Vue, Node, Mongo, Docker. This is a CRUD application with component tests aimed to learning and improve development skills.
 
 To use the app (start with sign up), you have to join mailtrap.io , or just let me know if you did sign on the app, so I can activate your account. Feel free to use any provider you like. Just remember to change in .env file:
 
